@@ -1,0 +1,24 @@
+{
+  "name": "chatgpt-tgbot",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiangege/chatgpt-tgbot.git"
+  },
+  "author": "jason",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jiangege/chatgpt-tgbot/issues"
+  },
+  "homepage": "https://github.com/jiangege/chatgpt-tgbot#readme",
+  "dependencies": {
+    "chatgpt": "^2.0.5",
+    "node-telegram-bot-api": "^0.60.0"
+  }
+}
