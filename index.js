@@ -1,19 +1,24 @@
-import config from "./config.js";
-import { ChatGPTAPI } from "chatgpt";
+import { ChatGPTAPI, getOpenAIAuth } from "chatgpt";
 import TelegramBot from "node-telegram-bot-api";
 
 const getChatgptApi = async () => {
-  const chatgptApi = new ChatGPTAPI({
-    sessionToken: config.gptToken,
+  const openAIAuth = await getOpenAIAuth({
+    email: process.env.OPENAI_EMAIL,
+    password: process.env.OPENAI_PASSWORD,
   });
 
-  await chatgptApi.ensureAuth();
-  return chatgptApi;
+  const api = new ChatGPTAPI({
+    ...openAIAuth,
+  });
+
+  await api.ensureAuth();
+  return api;
 };
 
 const auth = (msg) => {
-  if (!config.authorizedUsers.includes(msg.from.username)) {
-    throw new Error("抱歉，您没有使用本机器人的权限。");
+  const authorizedUsers = process.env.AUTHORIZED_USERS?.split(",") ?? [];
+  if (!authorizedUsers.includes(msg.from.username)) {
+    throw new Error("sorry, you are not authorized to use this bot");
   }
 };
 
